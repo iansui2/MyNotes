@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.EditNoteFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.iansui.mynotes.viewmodel.NotesViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/yellow_200">
+
+            <EditText
+                android:id="@+id/title_edit_text"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="@{viewModel.title}"
+                android:imeOptions="actionDone"
+                android:hint="@string/title"
+                android:inputType="text"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/desc_edit_text"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="@{viewModel.description}"
+                android:hint="@string/description"
+                android:inputType="textMultiLine"
+                android:maxLines="25"
+                android:autofillHints="" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_save_note"
+            style="@style/FabStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="@string/save_note"
+            android:focusable="true"
+            app:srcCompat="@drawable/ic_check" />
+
+    </FrameLayout>
+
+</layout>

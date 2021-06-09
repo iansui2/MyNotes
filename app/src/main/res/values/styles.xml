@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="IntroductionTextStyle">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:layout_margin">@dimen/edit_text_margin</item>
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:layout_margin">@dimen/small_text_margin</item>
+    </style>
+
+    <style name="DescTextStyle">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:layout_margin">@dimen/small_text_margin</item>
+    </style>
+
+    <style name="FabStyle">
+        <item name="android:layout_gravity">end|bottom</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+    </style>
+
+</resources>
