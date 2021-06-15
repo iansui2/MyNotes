@@ -16,7 +16,16 @@ class NotesViewModel(
     private val _description = MutableLiveData<String>()
     val description: LiveData<String> get() = _description
 
+    private val _category = MutableLiveData<String>()
+    val category: LiveData<String> get() = _category
+
     val notes = noteRepository.getAllNotes()
+
+    val categories = noteRepository.getAllCategories()
+
+    fun setCategory(category: String) {
+        _category.value = category
+    }
 
     fun setTitle(title: String) {
         _title.value = title
@@ -30,18 +39,14 @@ class NotesViewModel(
         noteRepository.insert(note)
     }
 
-    private fun update(note: Note) {
-        noteRepository.update(note)
-    }
-
     fun onSaveNote() {
-        val newNote = Note(title = _title.value!!, description = _description.value!!)
+        val newNote = Note(title = _title.value!!, description = _description.value!!, category = _category.value!!)
         insert(newNote)
     }
 
     fun onUpdateNote(id: Int) {
-        val updatedNote = Note(id, _title.value!!, _description.value!!)
-        update(updatedNote)
+        noteRepository.updateNote(id, _title.value!!, _description.value!!)
+        noteRepository.updateCategory(id, _category.value!!)
     }
 
     fun onDeleteNote(id: Int) {

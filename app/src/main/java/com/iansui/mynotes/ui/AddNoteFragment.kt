@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -40,12 +41,23 @@ class AddNoteFragment : Fragment() {
 
         binding.viewModel = sharedViewModel
 
+        binding.categoryEditText.openKeyboard()
         binding.titleEditText.openKeyboard()
         binding.descEditText.openKeyboard()
 
+        sharedViewModel.categories.observe(viewLifecycleOwner, { categories ->
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, categories)
+            binding.categoryEditText.threshold = 1
+            binding.categoryEditText.setAdapter(adapter)
+        })
+
         binding.fabSaveNote.setOnClickListener {
+            getCategory()
             getTitle()
             getDescription()
+            binding.categoryEditText.hideKeyboard()
+            binding.titleEditText.hideKeyboard()
+            binding.descEditText.hideKeyboard()
             sharedViewModel.onSaveNote()
             Toast.makeText(context, "Note Added!", Toast.LENGTH_SHORT).show()
             view.findNavController().navigate(AddNoteFragmentDirections.actionAddNoteFragmentToNotesFragment())
@@ -72,8 +84,6 @@ class AddNoteFragment : Fragment() {
         }
 
         sharedViewModel.setTitle(title)
-
-        binding.descEditText.hideKeyboard()
     }
 
     private fun getDescription () {
@@ -84,7 +94,15 @@ class AddNoteFragment : Fragment() {
         }
 
         sharedViewModel.setDescription(description)
+    }
 
-        binding.descEditText.hideKeyboard()
+    private fun getCategory () {
+        val category = if (binding.categoryEditText.text.toString() != "") {
+            binding.categoryEditText.text.toString()
+        } else {
+            ""
+        }
+
+        sharedViewModel.setCategory(category)
     }
 }

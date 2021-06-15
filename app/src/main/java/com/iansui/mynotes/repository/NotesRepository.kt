@@ -15,9 +15,15 @@ class NotesRepository (private val notesDAO: NotesDAO) {
         }
     }
 
-    fun update(note: Note) {
+    fun updateNote(id: Int, title: String, description: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            notesDAO.update(note)
+            notesDAO.updateNote(id, title, description)
+        }
+    }
+
+    fun updateCategory(id: Int, category: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            notesDAO.updateCategory(id, category)
         }
     }
 
@@ -35,5 +41,9 @@ class NotesRepository (private val notesDAO: NotesDAO) {
 
     fun getAllNotes(): LiveData<List<Note>> {
         return notesDAO.getAllNotes()
+    }
+
+    fun getAllCategories(): LiveData<List<String>> {
+        return notesDAO.getAllCategories()
     }
 }

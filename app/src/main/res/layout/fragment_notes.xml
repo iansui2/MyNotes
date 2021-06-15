@@ -21,7 +21,15 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/grid_view_item"/>
+            tools:listitem="@layout/grid_view_item" />
+
+        <TextView
+            android:id="@+id/introduction_text"
+            style="@style/IntroductionTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/introduction" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_note"

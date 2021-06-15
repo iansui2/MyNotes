@@ -13,8 +13,7 @@
         <action
             android:id="@+id/action_notesFragment_to_addNoteFragment"
             app:destination="@id/addNoteFragment"
-            app:popUpTo="@id/notesFragment"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_notesFragment_to_editNoteFragment"
             app:destination="@id/editNoteFragment"
@@ -45,6 +44,9 @@
             app:argType="string" />
         <argument
             android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="category"
             app:argType="string" />
     </fragment>
 </navigation>

@@ -13,5 +13,8 @@ data class Note (
     val title: String = "",
 
     @ColumnInfo(name = "description")
-    val description: String = ""
+    val description: String = "",
+
+    @ColumnInfo(name = "category")
+    val category: String = ""
 )
