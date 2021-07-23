@@ -7,4 +7,8 @@
     <color name="amber_700">#FFA000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#63CCFF</color>
+    <color name="green">#98EE99</color>
+    <color name="yellow">#FFF176</color>
+    <color name="pink">#ffcccb</color>
 </resources>

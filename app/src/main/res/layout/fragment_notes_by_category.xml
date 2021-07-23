@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.NotesFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.NotesByCategoryFragment">
 
     <data>
         <variable
@@ -16,20 +15,12 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/note_list"
+            android:id="@+id/note_by_category_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/note_view_item" />
-
-        <TextView
-            android:id="@+id/introduction_text"
-            style="@style/IntroductionTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/introduction" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_note"
@@ -44,5 +35,3 @@
     </FrameLayout>
 
 </layout>
-
-

@@ -19,9 +19,16 @@ class NotesViewModel(
     private val _category = MutableLiveData<String>()
     val category: LiveData<String> get() = _category
 
+    private val _color = MutableLiveData<String>()
+    val color: LiveData<String> get() = _color
+
     val notes = noteRepository.getAllNotes()
 
     val categories = noteRepository.getAllCategories()
+
+    init {
+        _color.value = "light_yellow"
+    }
 
     fun setCategory(category: String) {
         _category.value = category
@@ -35,17 +42,25 @@ class NotesViewModel(
         _description.value = description
     }
 
+    fun setColor(color: String) {
+        _color.value = color
+    }
+
     private fun insert(note: Note) {
         noteRepository.insert(note)
     }
 
+    fun getCategory(category: String): LiveData<List<Note>> {
+        return noteRepository.getCategory(category)
+    }
+
     fun onSaveNote() {
-        val newNote = Note(title = _title.value!!, description = _description.value!!, category = _category.value!!)
+        val newNote = Note(title = _title.value!!, description = _description.value!!, category = _category.value!!, color = _color.value!!)
         insert(newNote)
     }
 
     fun onUpdateNote(id: Int) {
-        noteRepository.updateNote(id, _title.value!!, _description.value!!)
+        noteRepository.updateNote(id, _title.value!!, _description.value!!, _color.value!!)
         noteRepository.updateCategory(id, _category.value!!)
     }
 

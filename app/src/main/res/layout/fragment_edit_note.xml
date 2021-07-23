@@ -9,13 +9,21 @@
         <variable
             name="viewModel"
             type="com.iansui.mynotes.viewmodel.NotesViewModel" />
+        <variable
+            name="fragment"
+            type="com.iansui.mynotes.ui.EditNoteFragment" />
+
     </data>
 
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_view_margin"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation">
 
         <LinearLayout
+            android:id="@+id/edit_note_main_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/yellow_200"
@@ -38,7 +46,6 @@
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/title"
                 android:imeOptions="actionDone"
@@ -50,26 +57,84 @@
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/description"
-                android:maxLines="25"
+                android:maxLines="5"
                 android:text="@{viewModel.description}"
                 android:inputType="text"
                 android:scrollHorizontally="false"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/colors_text"
+                style="@style/ColorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/colors" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_save_note"
-            style="@style/FabStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:contentDescription="@string/save_note"
-            android:focusable="true"
-            app:srcCompat="@drawable/ic_check" />
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-    </FrameLayout>
+                <Button
+                    android:id="@+id/color_blue"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/small_circle"
+                    app:backgroundTint="@color/blue"/>
+
+                <Button
+                    android:id="@+id/color_green"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/small_circle"
+                    app:backgroundTint="@color/green" />
+
+                <Button
+                    android:id="@+id/color_yellow"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/small_circle"
+                    app:backgroundTint="@color/yellow" />
+
+                <Button
+                    android:id="@+id/color_light_yellow"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/small_circle"
+                    app:backgroundTint="@color/yellow_200" />
+
+                <Button
+                    android:id="@+id/color_pink"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/small_circle"
+                    app:backgroundTint="@color/pink" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_save_note"
+                style="@style/FabStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:contentDescription="@string/save_note"
+                android:focusable="true"
+                app:srcCompat="@drawable/ic_check" />
+
+        </androidx.cardview.widget.CardView>
 
 </layout>

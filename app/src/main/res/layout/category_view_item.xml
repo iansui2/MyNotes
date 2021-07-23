@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/category_view_margin"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/category_edit_text"
+            style="@style/EditTextStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/category"
+            android:imeOptions="actionDone"
+            android:inputType="text"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/ic_check"/>
+
+    </LinearLayout>
+
+</layout>

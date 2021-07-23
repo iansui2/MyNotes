@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -46,10 +47,38 @@ class AddNoteFragment : Fragment() {
         binding.descEditText.openKeyboard()
 
         sharedViewModel.categories.observe(viewLifecycleOwner, { categories ->
-            val adapter = ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, categories)
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, categories)
             binding.categoryEditText.threshold = 1
             binding.categoryEditText.setAdapter(adapter)
         })
+
+        binding.categoryEditText.setOnClickListener {
+            binding.categoryEditText.showDropDown()
+        }
+
+        val args = AddNoteFragmentArgs.fromBundle(requireArguments())
+        sharedViewModel.setCategory(args.category)
+        val destination = args.destination
+
+        binding.colorBlue.setOnClickListener {
+            setColor(getString(R.string.blue))
+        }
+
+        binding.colorGreen.setOnClickListener {
+            setColor(getString(R.string.green))
+        }
+
+        binding.colorYellow.setOnClickListener {
+            setColor(getString(R.string.yellow))
+        }
+
+        binding.colorLightYellow.setOnClickListener {
+            setColor(getString(R.string.light_yellow))
+        }
+
+        binding.colorPink.setOnClickListener {
+            setColor(getString(R.string.pink))
+        }
 
         binding.fabSaveNote.setOnClickListener {
             getCategory()
@@ -59,12 +88,23 @@ class AddNoteFragment : Fragment() {
             binding.titleEditText.hideKeyboard()
             binding.descEditText.hideKeyboard()
             sharedViewModel.onSaveNote()
+
+            when (destination) {
+                getString(R.string.NotesFragment) -> {
+                    view.findNavController().navigate(AddNoteFragmentDirections.actionAddNoteFragmentToNotesFragment())
+                }
+                getString(R.string.NotesByCategoryFragment) -> {
+                    view.findNavController().navigate(AddNoteFragmentDirections.actionAddNoteFragmentToNotesByCategoryFragment())
+                }
+            }
+
             Toast.makeText(context, "Note Added!", Toast.LENGTH_SHORT).show()
-            view.findNavController().navigate(AddNoteFragmentDirections.actionAddNoteFragmentToNotesFragment())
         }
 
         binding.lifecycleOwner = this
     }
+
+
 
     private fun View.openKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -100,9 +140,38 @@ class AddNoteFragment : Fragment() {
         val category = if (binding.categoryEditText.text.toString() != "") {
             binding.categoryEditText.text.toString()
         } else {
-            ""
+            getString(R.string.no_category)
         }
 
         sharedViewModel.setCategory(category)
+    }
+
+    private fun setColor(color: String) {
+        when (color) {
+            getString(R.string.blue) -> {
+                binding.addNoteMainLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                sharedViewModel.setColor(getString(R.string.blue))
+            }
+            getString(R.string.green) -> {
+                binding.addNoteMainLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
+                sharedViewModel.setColor(getString(R.string.green))
+            }
+            getString(R.string.yellow) -> {
+                binding.addNoteMainLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.yellow))
+                sharedViewModel.setColor(getString(R.string.yellow))
+            }
+            getString(R.string.light_yellow) -> {
+                binding.addNoteMainLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.yellow_200))
+                sharedViewModel.setColor(getString(R.string.light_yellow))
+            }
+            getString(R.string.pink) -> {
+                binding.addNoteMainLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.pink))
+                sharedViewModel.setColor(getString(R.string.pink))
+            }
+            else -> {
+                binding.addNoteMainLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.yellow_200))
+                sharedViewModel.setColor(getString(R.string.light_yellow))
+            }
+        }
     }
 }
